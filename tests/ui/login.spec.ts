@@ -33,4 +33,12 @@ test.describe('Login', () => {
   // TODO (pendiente — ver README "Casos pendientes", ticket ASH-144):
   //   Falta automatizar el caso de CONTRASEÑA INCORRECTA.
   //   Ese es el test que vas a agregar vos, copiando el estilo del de arriba.
+
+  // El equipo dejó este caso "para más adelante" (ticket ASH-145).
+  // Está SKIPEADO a propósito: no corre, pero queda documentado en el código.
+  // (En un repo real vas a ver tests skipeados así, esperando que alguien los retome.)
+  test.skip('login con campos vacíos no envía el formulario', async ({ page }) => {
+    await page.getByRole('button', { name: 'Iniciar sesión' }).click();
+    await expect(page.getByText('Has iniciado sesión correctamente.')).not.toBeVisible();
+  });
 });
