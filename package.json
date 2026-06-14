@@ -1,0 +1,14 @@
+{
+  "name": "suite-login-academia",
+  "version": "1.0.0",
+  "description": "Suite de tests de login (Playwright + TypeScript) — repo de ejemplo para la práctica de sumarse a un proyecto existente",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0"
+  }
+}
