@@ -1,0 +1,44 @@
+# Tarea S6 — Me sumé a un repo existente y completé lo que faltaba
+
+## El test que agregué (ASH-144)
+(Pega aquí el código del test de contraseña incorrecta que generó la IA.)
+
+const CUENTA_INVALIDA = {
+  email: 'ana.garcia@ejemplo.com',
+  password: 'PasswordIncorrecta123!',
+};
+
+ test('login con contraseña incorrecta no muestra el mensaje de éxito', async ({ page }) => {
+    await page.getByLabel('Email').fill(CUENTA_INVALIDA.email);
+    await page.getByLabel('Contraseña').fill(CUENTA_INVALIDA.password);
+    await page.getByRole('button', { name: 'Iniciar sesión' }).click();
+
+    await expect(page.getByText('Has iniciado sesión correctamente.')).not.toBeVisible();
+  });
+
+## Cómo respeté la convención del proyecto
+- ¿Inline o Page Object? → ...
+
+R = La convención del poryecto se respeto como Inline.
+
+- ¿Usé las mismas constantes / el mismo describe / beforeEach? → Sí / No
+
+R = No. Use la misma constante nombre para el caso de contraseña valida e invalida, pero no la misma contraseña para el caso invalido. Se utilizo un describe por que solo se creo un bloque que contine los casos de pruebas automatizados para ejecutar y el beforeEach se declaro una sola vez despues del decribe. 
+
+- ¿Locators semánticos? → ...
+
+R = Sí. Para todos los csos se utilizaron localizadores semanticos.
+
+## Mi GATE: dónde corregí o dirigí a la IA
+
+R = La IA no metio su propio estilo, copio la convención como se le indico y no cambio nigun locator.
+
+## UNA cosa que aporté yo y la IA no sabía
+(Un criterio, un caso que faltaba, una mejor opción de locator, un dato del negocio...)
+
+R = Para este caso los criterios que se plantearon en el ejercicio estaban correcto, no hubo necesidad de agregar ninguno caso de prueba adiconal sobre el Login de la pagina, los lcator estaban correctos y lo unico que agrego la IA fue un dato incorrecta para el caso de contraseña incorrecta. 
+
+## Bonus (opcional)
+¿Despertaste el test.skip de ASH-145? → Sí / No
+
+R = Sí

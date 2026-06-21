@@ -17,6 +17,11 @@ const CUENTA_VALIDA = {
   password: 'Segura2026!',
 };
 
+const CUENTA_INVALIDA = {
+  email: 'ana.garcia@ejemplo.com',
+  password: 'PasswordIncorrecta123!',
+};
+
 test.describe('Login', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/login'); // baseURL viene del playwright.config.ts
@@ -30,14 +35,18 @@ test.describe('Login', () => {
     await expect(page.getByText('Has iniciado sesión correctamente.')).toBeVisible();
   });
 
-  // TODO (pendiente — ver README "Casos pendientes", ticket ASH-144):
-  //   Falta automatizar el caso de CONTRASEÑA INCORRECTA.
-  //   Ese es el test que vas a agregar vos, copiando el estilo del de arriba.
+  test('login con contraseña incorrecta no muestra el mensaje de éxito', async ({ page }) => {
+    await page.getByLabel('Email').fill(CUENTA_INVALIDA.email);
+    await page.getByLabel('Contraseña').fill(CUENTA_INVALIDA.password);
+    await page.getByRole('button', { name: 'Iniciar sesión' }).click();
+
+    await expect(page.getByText('Has iniciado sesión correctamente.')).not.toBeVisible();
+  });
 
   // El equipo dejó este caso "para más adelante" (ticket ASH-145).
   // Está SKIPEADO a propósito: no corre, pero queda documentado en el código.
   // (En un repo real vas a ver tests skipeados así, esperando que alguien los retome.)
-  test.skip('login con campos vacíos no envía el formulario', async ({ page }) => {
+  test('login con campos vacíos no envía el formulario', async ({ page }) => {
     await page.getByRole('button', { name: 'Iniciar sesión' }).click();
     await expect(page.getByText('Has iniciado sesión correctamente.')).not.toBeVisible();
   });
