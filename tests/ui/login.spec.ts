@@ -28,16 +28,16 @@ test.describe('Login', () => {
   });
 
   test('login exitoso con credenciales válidas', async ({ page }) => {
-    await page.getByLabel('Email').fill(CUENTA_VALIDA.email);
-    await page.getByLabel('Contraseña').fill(CUENTA_VALIDA.password);
+    await page.getByTestId('login-email').fill(CUENTA_VALIDA.email);
+    await page.getByTestId('login-password').fill(CUENTA_VALIDA.password);
     await page.getByRole('button', { name: 'Iniciar sesión' }).click();
 
     await expect(page.getByText('Has iniciado sesión correctamente.')).toBeVisible();
   });
 
   test('login con contraseña incorrecta no muestra el mensaje de éxito', async ({ page }) => {
-    await page.getByLabel('Email').fill(CUENTA_INVALIDA.email);
-    await page.getByLabel('Contraseña').fill(CUENTA_INVALIDA.password);
+    await page.getByTestId('login-email').fill(CUENTA_INVALIDA.email);
+    await page.getByTestId('login-password').fill(CUENTA_INVALIDA.password);
     await page.getByRole('button', { name: 'Iniciar sesión' }).click();
 
     await expect(page.getByText('Has iniciado sesión correctamente.')).not.toBeVisible();

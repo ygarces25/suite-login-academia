@@ -36,7 +36,7 @@ R = La IA no metio su propio estilo, copio la convención como se le indico y no
 ## UNA cosa que aporté yo y la IA no sabía
 (Un criterio, un caso que faltaba, una mejor opción de locator, un dato del negocio...)
 
-R = Para este caso los criterios que se plantearon en el ejercicio estaban correcto, no hubo necesidad de agregar ninguno caso de prueba adiconal sobre el Login de la pagina, los lcator estaban correctos y lo unico que agrego la IA fue un dato incorrecta para el caso de contraseña incorrecta. 
+R = Se le indico a la IA que modificara los textos getByLabel('Email') por getByTestId('login-email') y getByLabel('Contraseña') por getByTestId('login-password') en el archivo login.spec.ts ya que revisandos ambos elementes los mismos tienen como selector el data-testid que es el mas estable de todos de todos los selectores.
 
 ## Bonus (opcional)
 ¿Despertaste el test.skip de ASH-145? → Sí / No
